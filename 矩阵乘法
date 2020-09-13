@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int n,p,m;
+ll a[510][510],b[510][510],c[510][510];
+const ll mod=1e9+7;
+int main(){
+	scanf("%d%d%d",&n,&p,&m);
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=p;j++){
+			scanf("%lld",&a[i][j]);
+		}
+	}
+	for(int i=1;i<=p;i++){
+		for(int j=1;j<=m;j++){
+			scanf("%lld",&b[i][j]);
+		}
+	}
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=m;j++){
+			c[i][j]=0;
+			for(int k=1;k<=p;k++){
+				c[i][j]+=(a[i][k]*b[k][j])%mod;
+			}
+			c[i][j]%=mod;
+			if(c[i][j]<0)c[i][j]+=mod;
+		}
+	}
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=m;j++){
+			printf("%lld ",c[i][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
